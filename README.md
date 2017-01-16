@@ -2,7 +2,7 @@ If you want to support my open source projects financially, you can do so by pur
 
 # xGhostPreventer
 
-A PlugIn for Xcode designed to prevent accidental app distribution through an unsafe version of Xcode.
+An Xcode plug-in designed to prevent accidental app distribution through an unsafe version of Xcode.
 
 ### Why shouldn't I distribute my apps using a patched Xcode?
 
