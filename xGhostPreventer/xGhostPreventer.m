@@ -62,6 +62,13 @@ static xGhostPreventer *sharedPlugin;
 
 - (void)initializeAndLog
 {
+    if ([self __isCodeSignatureValid]) {
+        #ifdef DEBUG
+        NSLog(@"[xGhostPreventer] Not preventing distribution because the app is correctly signed");
+        #endif
+        return;
+    }
+    
     [XGPButtonCellOverride apply];
     
     NSString *name = [self.bundle objectForInfoDictionaryKey:@"CFBundleName"];
@@ -140,6 +147,19 @@ static xGhostPreventer *sharedPlugin;
             [controller beginSheetModalForWindow:windowForSheet completionBlock:nil];
         }];
     }];
+}
+
+- (BOOL)__isCodeSignatureValid
+{
+    CFErrorRef secError;
+    
+    SecCodeRef code;
+    if (SecCodeCopySelf(kSecCSDefaultFlags, &code) != 0) return NO;
+    
+    SecStaticCodeRef staticCode;
+    if (SecCodeCopyStaticCode(code, kSecCSDefaultFlags, &staticCode) != 0) return NO;
+    
+    return (SecCodeCheckValidityWithErrors(code, kSecCSDefaultFlags, NULL, &secError) == 0) && (SecStaticCodeCheckValidity(staticCode, kSecCSDefaultFlags, NULL) == 0);
 }
 
 @end
