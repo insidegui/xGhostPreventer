@@ -1,5 +1,3 @@
-If you want to support my open source projects financially, you can do so by purchasing a copy of [BrowserFreedom](https://getbrowserfreedom.com), [Mediunic](https://itunes.apple.com/app/mediunic-medium-client/id1088945121?mt=12) or sending Bitcoin to `3DH9B42m6k2A89hy1Diz3Vr3cpDNQTQCbJ` 😁
-
 # xGhostPreventer
 
 An Xcode plug-in designed to prevent accidental app distribution through an unsafe version of Xcode.
